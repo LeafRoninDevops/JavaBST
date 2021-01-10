@@ -43,4 +43,31 @@ public class Node{
         }
         return result;
     }
+
+    public static Node insert(Node root,int data){
+       if(root==null)
+       return new Node(data);
+
+       if(root.data>data){
+          root.right=insert(root.right,data);
+       }else{
+          root.left=insert(root.left,data);
+       }
+       return null;
+    }
+
+    public Boolean searchBST(Node root,int value){
+           if(root==null){
+            return false;
+           }
+           if(root.data==value)
+           return true;
+           if(root.data<value){
+               return searchBST(root.right, value);
+           }
+           if(root.data>value){
+            return searchBST(root.left, value);
+           }
+           return false;
+    }
 }
