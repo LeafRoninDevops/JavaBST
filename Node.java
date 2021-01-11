@@ -49,11 +49,11 @@ public class Node{
        return new Node(data);
 
        if(root.data>data){
-          root.right=insert(root.right,data);
-       }else{
           root.left=insert(root.left,data);
+       }else{
+          root.right=insert(root.right,data);
        }
-       return null;
+       return root;
     }
 
     public Boolean searchBST(Node root,int value){
@@ -69,5 +69,22 @@ public class Node{
             return searchBST(root.left, value);
            }
            return false;
+    }
+
+    public static void Swap(Node root){
+        Node temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+    }
+
+    public Boolean validateBST(Node root){
+
+        if(root==null)
+        return true;
+
+        if((root.right!=null && root.data>root.right.data) || (root.left!=null && root.data<root.left.data)){
+            return false;
+        }
+        return validateBST(root.left) && validateBST(root.right);
     }
 }
